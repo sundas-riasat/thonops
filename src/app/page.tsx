@@ -1,65 +1,90 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
+import { ArrowRight, Code, Zap, Users } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
+      {/* Cinematic Lighting Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 cinematic-glow opacity-60"></div>
+      </div>
+
+      <div className="z-10 w-full max-w-5xl px-6 flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
+          className="inline-flex glass-panel px-4 py-2 rounded-full mb-8 items-center gap-2 text-sm text-sky-400 font-medium"
+        >
+          <Zap className="w-4 h-4" />
+          <span>ThonOps 1.0 is now live</span>
+        </motion.div>
+
+        <motion.h1 
+          className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, type: 'spring' }}
+        >
+          Elevate Your <br />
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
+            Hackathon
+          </span>
+        </motion.h1>
+
+        <motion.p 
+          className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-10 font-light"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
+        >
+          A high-performance, real-time command center for modern developers, judges, and organizers. Built for speed and collaboration.
+        </motion.p>
+
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
+        >
+          <Link href="/dashboard/team">
+            <Button size="lg" className="bg-white text-black hover:bg-zinc-200 px-8 py-6 rounded-full text-lg h-auto">
+              Open Dashboard
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+          <Link href="/dashboard/organizer">
+            <Button size="lg" variant="outline" className="glass hover:bg-white/10 px-8 py-6 rounded-full text-lg h-auto relative overflow-hidden group">
+              <span className="relative z-10 text-white">Organizer View</span>
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+
+      {/* Decorative floating components */}
+      <div className="absolute inset-x-0 bottom-0 top-[60vh] md:top-[70vh] flex justify-center perspective-1000 z-0 opacity-50">
+         <motion.div 
+            initial={{ opacity: 0, rotateX: 60, y: 100 }}
+            animate={{ opacity: 1, rotateX: 45, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.5, type: 'spring', bounce: 0.3 }}
+            className="w-[80vw] md:w-[60vw] h-[50vh] glass-panel rounded-t-3xl border-t border-x border-white/10 shadow-[0_-20px_50px_rgba(56,189,248,0.1)] relative overflow-hidden flex flex-col p-8"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+             <div className="flex gap-4 mb-8 border-b border-white/5 pb-4">
+                <div className="h-3 w-3 rounded-full bg-red-500/50"></div>
+                <div className="h-3 w-3 rounded-full bg-yellow-500/50"></div>
+                <div className="h-3 w-3 rounded-full bg-green-500/50"></div>
+             </div>
+             <div className="space-y-4">
+               <div className="h-4 w-3/4 bg-white/5 rounded"></div>
+               <div className="h-4 w-1/2 bg-white/5 rounded"></div>
+               <div className="h-10 w-full bg-white/5 rounded mt-4"></div>
+             </div>
+          </motion.div>
+      </div>
+    </main>
+  )
 }
